@@ -1,46 +1,36 @@
-import prisma from "../app/libs/prisma"
-import getCurrentUser from "./getCurrentUser"
+import prisma from "../app/libs/prisma";
+import getCurrentUser from "./getCurrentUser";
 
 interface IParams {
-    listingId? : string 
+  listingId?: string;
 }
 
-export const getCurrentListing = async (params : IParams ) => {
+export const getCurrentListing = async (params: IParams) => {
+  try {
+    const { listingId } = params;
 
-    try {
+    const listing = await prisma.listing.findUnique({
+      where: {
+        id: listingId,
+      },
+      include: {
+        user: true,
+      },
+    });
 
-    const { listingId } =  params;
+    if (!listing) return null;
 
-    // if(!listingId){
-    //     return null
-    // }
-
-
-    const listing =  await prisma.listing.findUnique({
-        where : {
-            id : listingId
-        },
-        include : {
-            user : true
-        }
-    })
-
-    if(!listing) return null
-
-    return  {
-        ...listing , 
-        createdAt : listing.createdAt.toString(),
-        user : {
-            ...listing.user,
-            updatedAt : listing.user.updatedAt.toString(),
-            createdAt : listing.user.createdAt.toString(),
-            emailVerified : listing.user.emailVerified?.toString() || null
-        }
-    }
-  
-
-}    catch(error : any ){
-    throw new Error(error)
-}
-
-}
+    return {
+      ...listing,
+      createdAt: listing.createdAt.toString(),
+      user: {
+        ...listing.user,
+        updatedAt: listing.user.updatedAt.toString(),
+        createdAt: listing.user.createdAt.toString(),
+        emailVerified: listing.user.emailVerified?.toString() || null,
+      },
+    };
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};

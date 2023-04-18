@@ -15,7 +15,6 @@ import Counter from "@ui/Counter";
 import ImageUpload from "@ui/Inputs/ImageUpload";
 import Input from "@ui/Inputs/FormInputs";
 import axios from "axios";
-import useSWRMutation from "swr/mutation";
 
 const RentModal = () => {
   enum STEPS {
