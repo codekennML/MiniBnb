@@ -6,3 +6,22 @@ Login Details :
 
 Username : Mailer@mail.com
 Password : XKx6erY@@!AyAd8
+
+Features
+
+Tailwind design
+Tailwind animations and effects
+Full responsiveness
+Credential authentication
+Image upload using Cloudinary CDN
+Client form validation and handling using react-hook-form
+Server error handling using react-toast
+Calendars with react-date-range
+Booking / Reservation system
+Guest reservation cancellation
+Owner reservation cancellation
+Creation and deletion of properties
+Pricing calculation
+Advanced search algorithm by category, date range, map location, number of guests, rooms and bathrooms
+
+Favorites system
